@@ -1,6 +1,12 @@
 import { children } from "solid-js"
 
-export const Button = (props) => {
+type BUttonProps = {
+    children: HTMLElement,
+    variant?: "default" | "alternative" | "dark" | "light"
+    color?: string
+}
+
+export const Button = (props: BUttonProps) => {
     const safeChildren = children(() => props.children)
 
     return (
