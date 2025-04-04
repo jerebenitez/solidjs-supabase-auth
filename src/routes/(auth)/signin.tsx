@@ -23,7 +23,7 @@ export default function SignIn() {
                 </div>
                 <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
             </div>
-            <a href="#" class="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
+            <A href="/forgot-password" class="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</A>
         </div>
         <Button type="submit" class="w-full">Sing in to your account</Button>
         <Separator label="or" />
