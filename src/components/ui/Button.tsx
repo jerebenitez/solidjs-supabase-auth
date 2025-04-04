@@ -1,15 +1,21 @@
-import { children, JSX } from "solid-js"
-import { twMerge } from "tailwind-merge";
+import { children, JSX, splitProps } from "solid-js"
+import { cn } from "~/lib/utils";
 
 type ButtonProps = {
     children: JSX.Element | JSX.Element[] | string,
     variant?: "primary" | "secondary" | "success" | "danger" | "warning" | "dark" | "light" | "outline" 
-    size?: "sm" | "md" | "lg" | "icon"
+    size?: "sm" | "md" | "lg"
     pill?: boolean
 }
 
 export const Button = (props: ButtonProps & JSX.ButtonHTMLAttributes<HTMLButtonElement>) => {
-    const safeChildren = children(() => props.children)
+    const [childrenProp, classes, restProps] = splitProps(
+        props,
+        ["children"],
+        ["class"]
+    )
+
+    const safeChildren = children(() => childrenProp.children)
 
     const baseStyles = "text-white font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-4 transition";
     const variants = {
@@ -30,17 +36,17 @@ export const Button = (props: ButtonProps & JSX.ButtonHTMLAttributes<HTMLButtonE
       icon: ""
     };
 
-    const classes = twMerge(
+    const finalClasses = cn(
         baseStyles,
         props.variant ? variants[props.variant] : variants.primary,
         props.size ? sizes[props.size] : sizes.md,
-        props.class
+        classes.class
     )
 
     return (
         <button
-            class={classes}
-            {...props}
+            class={finalClasses}
+            {...restProps}
         >
             {safeChildren()}
         </button>
