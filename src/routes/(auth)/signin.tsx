@@ -1,3 +1,4 @@
+import { A } from "@solidjs/router";
 import { Button } from "~/components/ui/Button";
 import { Card, CardTitle } from "~/components/ui/Card";
 import { Separator } from "~/components/ui/Separator";
@@ -33,7 +34,7 @@ export default function SignIn() {
             Sign in with Google
         </Button>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+            Not registered? <A href="/signup" class="text-blue-700 hover:underline dark:text-blue-500">Create account</A>
         </div>
     </form>
         </Card>

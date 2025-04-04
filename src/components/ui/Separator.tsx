@@ -1,5 +1,3 @@
-import { ParentProps } from "solid-js";
-
 type SeparatorProps = {
     label: string
 }
