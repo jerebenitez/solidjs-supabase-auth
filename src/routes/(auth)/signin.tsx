@@ -1,13 +1,42 @@
-import { A } from '@solidjs/router'
+import { A, useNavigate } from '@solidjs/router'
+import { createSignal } from 'solid-js'
 import { Button } from '~/components/ui/Button'
 import { Card, CardTitle } from '~/components/ui/Card'
 import { Separator } from '~/components/ui/Separator'
+import { supabase } from '~/lib/supabase'
 
 export default function SignIn() {
+    const [email, setEmail] = createSignal('')
+    const [password, setPassword] = createSignal('')
+    const [loading, setLoading] = createSignal(false)
+    const [error, setError] = createSignal<Error | null>(null)
+    const navigate = useNavigate()
+
+    const handleLogin = async (e: SubmitEvent) => {
+        e.preventDefault()
+
+        setLoading(true)
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email(),
+            password: password()
+        })
+
+        setLoading(false)
+
+        if (error && error instanceof Error) {
+            setError(error)
+            return
+        }
+
+        if (data)
+            navigate("/")
+    }
+
     return (
         <Card>
             <CardTitle>Sing in to our platform</CardTitle>
-            <form class="space-y-6" action="#">
+            <form class="space-y-6" onsubmit={e => handleLogin(e)}>
                 <div>
                     <label
                         for="email"
@@ -21,6 +50,7 @@ export default function SignIn() {
                         id="email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         placeholder="name@company.com"
+                        onchange={e => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -37,6 +67,7 @@ export default function SignIn() {
                         id="password"
                         placeholder="••••••••"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        onchange={e => setPassword(e.target.value)}
                         required
                     />
                 </div>
