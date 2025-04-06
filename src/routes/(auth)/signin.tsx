@@ -19,7 +19,7 @@ export default function SignIn() {
 
         const { data, error } = await supabase.auth.signInWithPassword({
             email: email(),
-            password: password()
+            password: password(),
         })
 
         setLoading(false)
@@ -29,14 +29,13 @@ export default function SignIn() {
             return
         }
 
-        if (data)
-            navigate("/")
+        if (data) navigate('/')
     }
 
     return (
         <Card>
             <CardTitle>Sing in to our platform</CardTitle>
-            <form class="space-y-6" onsubmit={e => handleLogin(e)}>
+            <form class="space-y-6" onsubmit={(e) => handleLogin(e)}>
                 <div>
                     <label
                         for="email"
@@ -50,7 +49,7 @@ export default function SignIn() {
                         id="email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         placeholder="name@company.com"
-                        onchange={e => setEmail(e.target.value)}
+                        onchange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
@@ -67,7 +66,7 @@ export default function SignIn() {
                         id="password"
                         placeholder="••••••••"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        onchange={e => setPassword(e.target.value)}
+                        onchange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
