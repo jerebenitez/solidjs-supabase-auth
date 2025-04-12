@@ -1,5 +1,6 @@
 import { initFlowbite } from 'flowbite'
 import { onMount } from 'solid-js'
+import { Button } from './Button'
 
 export type DropdownOptions = {
     title: string
@@ -19,15 +20,15 @@ export function RadioDropdown(props: DropdownProps) {
 
     return (
         <>
-            <button
+            <Button
                 id="dropdownRadioHelperButton"
                 data-dropdown-toggle="dropdownRadioHelper"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="inline-flex items-center gap-2"
                 type="button"
             >
                 {props.title}
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-up-down-icon lucide-chevrons-up-down"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
-            </button>
+            </Button>
             <div
                 id="dropdownRadioHelper"
                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-60 dark:bg-gray-700 dark:divide-gray-600"
