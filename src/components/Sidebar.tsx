@@ -1,10 +1,13 @@
-import { LayoutDashboard, SquareKanban } from "lucide-solid"
+import Inbox from 'lucide-solid/icons/inbox'
+import LayoutDashboard from 'lucide-solid/icons/layout-dashboard'
+import SquareKanban from 'lucide-solid/icons/square-kanban'
 import { SidebarItem, SidebarItemProps } from "./SidebarItem"
 
 export function Sidebar() {
     const data: SidebarItemProps[] = [
         { title: "Dashboard", href: "/", icon: LayoutDashboard },
         { title: "Kanban", href: "/kanban", icon: SquareKanban, badge: { title: "Pro", color: "gray", pill: true } },
+        { title: "Inbox", href: "/inbox", icon: Inbox, badge: { title: "3", pill: true } },
     ]
 
     return (
