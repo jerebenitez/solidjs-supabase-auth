@@ -5,9 +5,22 @@ import { A } from '@solidjs/router'
 
 export function Header() {
     const projects: DropdownOptions[] = [
-        { id: 1, title: "Individual", description: "Some helpful instruction goes over here." },
-        { id: 2, title: "Company", description: "Some helpful instruction goes over here." },
-        { id: 3, title: "Non profit", description: "Some helpful instruction goes over here.", checked: true },
+        {
+            id: 1,
+            title: 'Individual',
+            description: 'Some helpful instruction goes over here.',
+        },
+        {
+            id: 2,
+            title: 'Company',
+            description: 'Some helpful instruction goes over here.',
+        },
+        {
+            id: 3,
+            title: 'Non profit',
+            description: 'Some helpful instruction goes over here.',
+            checked: true,
+        },
     ]
 
     onMount(() => {
@@ -16,53 +29,30 @@ export function Header() {
 
     return (
         <header class="antialiased">
-            <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+            <nav class="px-3 py-3 lg:px-5 lg:pl-3 fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-wrap justify-between items-center">
                     <div class="flex justify-start items-center">
                         <button
-                            id="toggleSidebar"
-                            aria-expanded="true"
-                            aria-controls="sidebar"
-                            class="hidden p-2 mr-3 text-gray-600 rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700"
+                            data-drawer-target="logo-sidebar"
+                            data-drawer-toggle="logo-sidebar"
+                            aria-controls="logo-sidebar"
+                            type="button"
+                            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         >
+                            <span class="sr-only">Open sidebar</span>
                             <svg
-                                class="w-5 h-5"
+                                class="w-6 h-6"
                                 aria-hidden="true"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 16 12"
-                            >
-                                {' '}
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M1 1h14M1 6h14M1 11h7"
-                                />{' '}
-                            </svg>
-                        </button>
-                        <button
-                            aria-expanded="true"
-                            aria-controls="sidebar"
-                            class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                            <svg
-                                class="w-[18px] h-[18px]"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 17 14"
                             >
                                 <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M1 1h15M1 7h15M1 13h15"
-                                />
+                                    clip-rule="evenodd"
+                                    fill-rule="evenodd"
+                                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+                                ></path>
                             </svg>
-                            <span class="sr-only">Toggle sidebar</span>
                         </button>
                         <a href="https://flowbite.com" class="flex mr-4">
                             <img
@@ -75,11 +65,10 @@ export function Header() {
                             </span>
                         </a>
 
-                    <RadioDropdown 
-                        title="Project Name" 
-                        options={projects}
-                    />
-
+                        <RadioDropdown
+                            title="Project Name"
+                            options={projects}
+                        />
                     </div>
                     <div class="flex items-center lg:order-2 gap-4">
                         <form action="#" class="hidden lg:block lg:pl-2">

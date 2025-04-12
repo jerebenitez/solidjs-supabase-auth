@@ -1,26 +1,17 @@
-import { ParentProps, createResource, onMount } from 'solid-js'
-import { initFlowbite } from 'flowbite'
-import { supabase } from '~/lib/supabase'
+import { ParentProps } from 'solid-js'
 import { Header } from '~/components/Header'
-
-const fetchUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser()
-
-    return user
-}
+import { Sidebar } from '~/components/Sidebar'
 
 export default function DashboardLayout(props: ParentProps) {
-
-    onMount(() => {
-        initFlowbite()
-    })
-
-    const [user] = createResource(fetchUser)
-
     return (
         <>
             <Header />
-            <main>{props.children}</main>
+            <Sidebar />
+            <main class="p-4 sm:ml-64">
+                <div class="p-4 mt-14">
+                    {props.children}
+                </div>
+            </main>
         </>
     )
 }
