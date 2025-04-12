@@ -12,7 +12,7 @@ type ButtonProps = {
         | 'dark'
         | 'light'
         | 'outline'
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'icon'
     pill?: boolean
 }
 
@@ -49,7 +49,7 @@ export const Button = (
         sm: 'text-xs px-3 py-2',
         md: 'text-sm px-5 py-2.5',
         lg: 'text-lg px-6 py-3',
-        icon: '',
+        icon: 'text-sm px-3',
     }
 
     const finalClasses = cn(
