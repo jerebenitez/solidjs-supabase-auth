@@ -36,12 +36,12 @@ export function RadioDropdown(props: DropdownProps) {
                     class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownRadioHelperButton"
                 >
-                {props.options.map(option => (
+                {props.options.map((option, idx) => (
                     <li>
                         <div class="flex p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                             <div class="flex items-center h-5">
                                 <input
-                                    id="helper-radio-4"
+                                    id={`helper-radio-${idx}`}
                                     name="helper-radio"
                                     type="radio"
                                     value=""
@@ -50,13 +50,13 @@ export function RadioDropdown(props: DropdownProps) {
                             </div>
                             <div class="ms-2 text-sm">
                                 <label
-                                    for="helper-radio-4"
+                                    for={`helper-radio-${idx}`}
                                     class="font-medium text-gray-900 dark:text-gray-300"
                                 >
                                     <div>{option.title}</div>
                                     {option.description && (
                                     <p
-                                        id="helper-radio-text-4"
+                                        id={`helper-radio-${idx}`}
                                         class="text-xs font-normal text-gray-500 dark:text-gray-300"
                                     >{option.description}</p>
                                     )}
