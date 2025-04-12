@@ -1,6 +1,7 @@
 import { initFlowbite } from 'flowbite'
 import { onMount } from 'solid-js'
 import { DropdownOptions, RadioDropdown } from './ui/RadioDropdown'
+import { A } from '@solidjs/router'
 
 export function Header() {
     const projects: DropdownOptions[] = [
@@ -403,20 +404,20 @@ export function Header() {
                                 aria-labelledby="dropdown"
                             >
                                 <li>
-                                    <a
-                                        href="#"
+                                    <A
+                                        href="/profile"
                                         class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                                     >
                                         My profile
-                                    </a>
+                                    </A>
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
+                                    <A
+                                        href="/settings"
                                         class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                                     >
                                         Account settings
-                                    </a>
+                                    </A>
                                 </li>
                             </ul>
                             <ul
