@@ -13,6 +13,7 @@
         "@supabase/supabase-js": "^2.49.4",
         "clsx": "^2.1.1",
         "flowbite": "^3.1.2",
+        "lucide-solid": "^0.487.0",
         "solid-js": "^1.9.5",
         "tailwind-merge": "^3.1.0",
         "vinxi": "^0.5.3"
