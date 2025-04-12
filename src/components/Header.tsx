@@ -4,9 +4,9 @@ import { DropdownOptions, RadioDropdown } from './ui/RadioDropdown'
 
 export function Header() {
     const projects: DropdownOptions[] = [
-        { title: "Individual", description: "Some helpful instruction goes over here." },
-        { title: "Company", description: "Some helpful instruction goes over here." },
-        { title: "Non profit", description: "Some helpful instruction goes over here." },
+        { id: 1, title: "Individual", description: "Some helpful instruction goes over here." },
+        { id: 2, title: "Company", description: "Some helpful instruction goes over here." },
+        { id: 3, title: "Non profit", description: "Some helpful instruction goes over here.", checked: true },
     ]
 
     onMount(() => {
