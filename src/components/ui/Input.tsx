@@ -69,7 +69,7 @@ export const Input: Component<InputProps> = (props) => {
 
   return (
     <div class="relative">
-      <Show when={local.icon && (local.iconPosition !== "right")}>
+      <Show when={local.icon}>
         <div class={getIconClass()}>
           <local.icon size={local.size === "lg" ? 24 : local.size === "sm" ? 16 : 20} />
         </div>
@@ -80,12 +80,6 @@ export const Input: Component<InputProps> = (props) => {
         aria-invalid={local.error ? "true" : "false"}
         {...inputProps}
       />
-      
-      <Show when={local.icon && local.iconPosition === "right"}>
-        <div class={getIconClass()}>
-          <local.icon size={local.size === "lg" ? 24 : local.size === "sm" ? 16 : 20} />
-        </div>
-      </Show>
     </div>
   );
 };
