@@ -47,7 +47,7 @@ export const Input: Component<InputProps> = (props) => {
   };
 
   return (
-    <div class="relative">
+    <div class="relative flex items-center">
     {local.icon && 
       <InputContext.Provider value={{ iconPosition: local.iconPosition || "left" }}>
           {local.icon}
