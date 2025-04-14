@@ -1,6 +1,7 @@
 import { Component, splitProps } from 'solid-js'
-import { InputIconProps, useInputContext } from '.'
+import { InputIconProps } from '.'
 import { cn } from '~/lib/utils'
+import { useInputContext } from './context'
 
 export const InputIcon: Component<InputIconProps> = (props) => {
     const [local, divProps] = splitProps(props, ['size', 'class', 'children'])

@@ -1,6 +1,7 @@
-import { Component, Show, splitProps } from "solid-js";
+import { Component, splitProps } from "solid-js";
 import { cn } from "~/lib/utils";
-import { InputProps, InputContext } from ".";
+import { InputProps } from ".";
+import { InputContext } from "./context";
 
 export const Input: Component<InputProps> = (props) => {
   // Split custom props from native input props
