@@ -8,16 +8,18 @@ export function HeaderSearch(props: JSX.HTMLAttributes<HTMLDivElement>) {
             <label for="topbar-search" class="sr-only">
                 Search
             </label>
-            <Input
-                type="text"
-                name="email"
-                id="topbar-search"
-                placeholder='Search'
-                icon={() => (
-                    <InputIcon>
-                        <Search class="w-4 h-4"/>
-                    </InputIcon>
-                )} />
+                <Input
+                    type="text"
+                    name="email"
+                    id="topbar-search"
+                    placeholder="Search"
+                    expandDirection='left'
+                    icon={() => (
+                        <InputIcon>
+                            <Search class="w-4 h-4" />
+                        </InputIcon>
+                    )}
+                />
         </div>
     )
 }
