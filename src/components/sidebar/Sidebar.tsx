@@ -1,7 +1,7 @@
 import Inbox from 'lucide-solid/icons/inbox'
 import LayoutDashboard from 'lucide-solid/icons/layout-dashboard'
 import SquareKanban from 'lucide-solid/icons/square-kanban'
-import { SidebarItem, SidebarItemProps } from './SidebarItem'
+import { SidebarItem, SidebarItemProps } from '~/components/sidebar/SidebarItem'
 
 export function Sidebar() {
     const data: SidebarItemProps[] = [

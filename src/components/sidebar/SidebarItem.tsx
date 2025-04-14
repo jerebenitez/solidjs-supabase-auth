@@ -1,6 +1,6 @@
 import { A } from "@solidjs/router"
 import { LucideIcon } from "lucide-solid"
-import { Badge, BadgeProps } from "./ui/Badge"
+import { Badge, BadgeProps } from "~/components/ui/Badge"
 
 export type SidebarItemProps = {
     title: string
