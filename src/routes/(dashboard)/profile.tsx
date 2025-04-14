@@ -1,6 +1,6 @@
 import Phone from 'lucide-solid/icons/phone'
 import { Button } from '~/components/ui/Button'
-import { Input } from '~/components/ui/Input'
+import { Input, InputIcon } from '~/components/ui/input'
 import { Label } from '~/components/ui/Label'
 
 export default function ProfilePage() {
@@ -42,7 +42,9 @@ export default function ProfilePage() {
                         placeholder="123-45-678"
                         pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                         required
-                        icon={Phone}
+                        icon={
+                            <InputIcon><Phone /></InputIcon>
+                        }
                     />
                 </div>
                 <div>

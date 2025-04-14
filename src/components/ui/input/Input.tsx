@@ -1,15 +1,6 @@
-import { Component, JSX, Show, splitProps } from "solid-js";
-import { LucideIcon } from "lucide-solid";
+import { Component, splitProps } from "solid-js";
 import { cn } from "~/lib/utils";
-
-type InputSize = "sm" | "md" | "lg";
-
-export type InputProps = {
-  size?: InputSize;
-  error?: boolean;
-  icon?: LucideIcon;
-  iconPosition?: "left" | "right";
-} & JSX.InputHTMLAttributes<HTMLInputElement>;
+import { InputProps, InputContext } from ".";
 
 export const Input: Component<InputProps> = (props) => {
   // Split custom props from native input props
@@ -19,7 +10,7 @@ export const Input: Component<InputProps> = (props) => {
     "iconPosition",
     "error",
   ]);
-
+  
   const getInputClass = () => {
     return cn(
       "block w-full border rounded-lg focus:outline-none focus:ring-4",
@@ -36,45 +27,30 @@ export const Input: Component<InputProps> = (props) => {
       (local.size === "md" || !local.size) && "text-sm p-2.5",
       
       // Icon padding adjustments
-      local.icon && local.iconPosition === "right" && {
+      local.icon && local.iconPosition === "right" ? {
         "pr-8": local.size === "sm",
         "pr-10": local.size === "md" || !local.size,
         "pr-12": local.size === "lg",
-      },
+      } : null,
       
-      local.icon && local.iconPosition !== "right" && {
+      local.icon && local.iconPosition !== "right" ? {
         "pl-8": local.size === "sm",
         "pl-10": local.size === "md" || !local.size,
         "pl-12": local.size === "lg",
-      },
+      } : null,
       
       // Custom classes
       inputProps.class
     );
   };
 
-  const getIconClass = () => {
-    return cn(
-      "absolute flex items-center justify-center text-gray-500 dark:text-gray-400",
-      
-      // Position classes
-      local.iconPosition === "right" ? "right-0" : "left-0",
-      
-      // Size classes
-      local.size === "sm" && "p-2",
-      local.size === "lg" && "p-4",
-      (local.size === "md" || !local.size) && "p-2.5"
-    );
-  };
-
   return (
     <div class="relative">
-      <Show when={local.icon}>
-        <div class={getIconClass()}>
-          <local.icon size={local.size === "lg" ? 24 : local.size === "sm" ? 16 : 20} />
-        </div>
-      </Show>
-      
+      {local.icon && (
+        <InputContext.Provider value={{ iconPosition: local.iconPosition || "left" }}>
+            {local.icon}
+        </InputContext.Provider>
+      )}
       <input
         class={getInputClass()}
         aria-invalid={local.error ? "true" : "false"}
@@ -83,4 +59,3 @@ export const Input: Component<InputProps> = (props) => {
     </div>
   );
 };
-
