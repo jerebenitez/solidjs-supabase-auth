@@ -1,4 +1,4 @@
-import { Component, splitProps } from "solid-js";
+import { Component, Show, splitProps } from "solid-js";
 import { cn } from "~/lib/utils";
 import { InputProps, InputContext } from ".";
 
@@ -7,6 +7,7 @@ export const Input: Component<InputProps> = (props) => {
   const [local, inputProps] = splitProps(props, [
     "size",
     "icon",
+    "class",
     "iconPosition",
     "error",
   ]);
@@ -40,17 +41,16 @@ export const Input: Component<InputProps> = (props) => {
       } : null,
       
       // Custom classes
-      inputProps.class
+      local.class
     );
   };
 
   return (
     <div class="relative">
-      {local.icon && (
-        <InputContext.Provider value={{ iconPosition: local.iconPosition || "left" }}>
-            {local.icon}
-        </InputContext.Provider>
-      )}
+    {local.icon && 
+      <InputContext.Provider value={{ iconPosition: local.iconPosition || "left" }}>
+          {local.icon}
+      </InputContext.Provider>}
       <input
         class={getInputClass()}
         aria-invalid={local.error ? "true" : "false"}

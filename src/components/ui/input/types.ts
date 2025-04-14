@@ -5,12 +5,11 @@ export type InputSize = "sm" | "md" | "lg";
 export type InputProps = {
   size?: InputSize;
   error?: boolean;
-  icon?: JSX.Element;
+  icon?: () => JSX.Element;
   iconPosition?: "left" | "right";
 } & JSX.InputHTMLAttributes<HTMLInputElement>;
 
 export type InputIconProps = {
   size?: InputSize;
-  iconPosition?: "left" | "right";
 } & JSX.HTMLAttributes<HTMLDivElement>;
 

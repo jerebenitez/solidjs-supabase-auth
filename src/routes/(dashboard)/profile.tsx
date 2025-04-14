@@ -42,9 +42,11 @@ export default function ProfilePage() {
                         placeholder="123-45-678"
                         pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                         required
-                        icon={
-                            <InputIcon><Phone /></InputIcon>
-                        }
+                        icon={() => (
+                            <InputIcon>
+                                <Phone />
+                            </InputIcon>
+                        )}
                     />
                 </div>
                 <div>
@@ -95,7 +97,7 @@ export default function ProfilePage() {
             </div>
             <div class="flex items-start gap-2 mb-6">
                 <div class="flex items-center h-5">
-                    <Input id="remember" type="checkbox" value="" required />
+                    <input id="remember" type="checkbox" value="" required />
                 </div>
                 <Label for="remember">
                     I agree with the{' '}
