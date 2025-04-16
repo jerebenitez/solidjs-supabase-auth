@@ -1,7 +1,7 @@
 import { children, JSX, splitProps } from 'solid-js'
 import { cn } from '~/lib/utils'
 
-type ButtonProps = {
+export type ButtonProps = {
     children: JSX.Element | JSX.Element[] | string
     variant?:
         | 'primary'
@@ -14,11 +14,9 @@ type ButtonProps = {
         | 'outline'
     size?: 'sm' | 'md' | 'lg' | 'icon'
     pill?: boolean
-}
+} & JSX.ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button = (
-    props: ButtonProps & JSX.ButtonHTMLAttributes<HTMLButtonElement>
-) => {
+export const Button = (props: ButtonProps) => {
     const [childrenProp, classes, restProps] = splitProps(
         props,
         ['children'],

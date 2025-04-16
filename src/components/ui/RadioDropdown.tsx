@@ -2,6 +2,7 @@ import { initFlowbite } from 'flowbite'
 import { onMount } from 'solid-js'
 import { Button } from './Button'
 import ChevronsUpDown from 'lucide-solid/icons/chevrons-up-down'
+import { DropdownTrigger } from './dropdown/DropdownTrigger'
 
 export type DropdownOptions = {
     id: number | string | string[]
@@ -23,16 +24,16 @@ export function RadioDropdown(props: DropdownProps) {
 
     return (
         <>
-            <Button
+            <DropdownTrigger
                 variant='secondary'
+                for="dropdownRadioHelper"
                 id="dropdownRadioHelperButton"
-                data-dropdown-toggle="dropdownRadioHelper"
                 class="inline-flex items-center gap-2"
                 type="button"
             >
                 {props.title}
                 <ChevronsUpDown />
-            </Button>
+            </DropdownTrigger>
             <div
                 id="dropdownRadioHelper"
                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-60 dark:bg-gray-700 dark:divide-gray-600"
