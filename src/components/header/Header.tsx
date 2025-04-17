@@ -7,6 +7,8 @@ import { projects } from '~/lib/data'
 import { Button } from '../ui/Button'
 import { Dropdown } from '../ui/dropdown/Dropdown'
 import { DropdownContent } from '../ui/dropdown/DropdownContent'
+import { DropdownItem } from '../ui/dropdown/DropdownItem'
+import { Separator } from '../ui/Separator'
 
 const getProjects = () => {
     return projects
@@ -350,31 +352,18 @@ export function Header() {
                                     name@flowbite.com
                                 </span>
                             </div>
-                            <DropdownContent aria-labelledby="dropdown">
-                                <li>
-                                    <A
-                                        href="/profile"
-                                        class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                                    >
-                                        My profile
-                                    </A>
-                                </li>
-                                <li>
-                                    <A
-                                        href="/settings"
-                                        class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                                    >
-                                        Account settings
-                                    </A>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    >
-                                        Sign out
-                                    </a>
-                                </li>
+                            <Separator class="mb-2" />
+                            <DropdownContent class="my-2" aria-labelledby="dropdown">
+                                <DropdownItem>
+                                    <A href="/profile">My Profile</A>
+                                </DropdownItem>
+                                <DropdownItem>
+                                    <A href="/settings">Account Settings</A>
+                                </DropdownItem>
+                                <Separator class="my-2" />
+                                <DropdownItem>
+                                    <A href="/#">Sign Out</A>
+                                </DropdownItem>
                             </DropdownContent>
                         </Dropdown>
                     </div>
