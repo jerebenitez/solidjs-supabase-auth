@@ -10,6 +10,7 @@ import { DropdownContent } from '../ui/dropdown/DropdownContent'
 import { DropdownItem } from '../ui/dropdown/DropdownItem'
 import { Separator } from '../ui/Separator'
 import { DropdownTrigger } from '../ui/dropdown/DropdownTrigger'
+import { DropdownLabel } from '../ui/dropdown/DropdownLabel'
 
 const getProjects = () => {
     return projects
@@ -343,14 +344,14 @@ export function Header() {
                             />
                         </DropdownTrigger>
                         <Dropdown id="dropdown" class="w-56 my-4 list-none text-base bg-white">
-                            <div class="py-3 px-4">
+                            <DropdownLabel>
                                 <span class="block font-semibold">
                                     Neil sims
                                 </span>
                                 <span class="block text-sm text-gray-500 truncate dark:text-gray-400">
                                     name@flowbite.com
                                 </span>
-                            </div>
+                            </DropdownLabel>
                             <Separator class="mb-2" />
                             <DropdownContent class="my-2" aria-labelledby="dropdown">
                                 <DropdownItem>
