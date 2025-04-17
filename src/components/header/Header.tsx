@@ -1,28 +1,16 @@
 import { initFlowbite } from 'flowbite'
 import { onMount } from 'solid-js'
-import { DropdownOptions, RadioDropdown } from '~/components/ui/RadioDropdown'
+import { RadioDropdown } from '~/components/ui/RadioDropdown'
 import { A } from '@solidjs/router'
 import { HeaderSearch } from './HeaderSearch'
+import { projects } from '~/lib/data'
+
+const getProjects = () => {
+    return projects
+}
 
 export function Header() {
-    const projects: DropdownOptions[] = [
-        {
-            id: 1,
-            title: 'Individual',
-            description: 'Some helpful instruction goes over here.',
-        },
-        {
-            id: 2,
-            title: 'Company',
-            description: 'Some helpful instruction goes over here.',
-        },
-        {
-            id: 3,
-            title: 'Non profit',
-            description: 'Some helpful instruction goes over here.',
-            checked: true,
-        },
-    ]
+    const projects = getProjects()
 
     onMount(() => {
         initFlowbite()
