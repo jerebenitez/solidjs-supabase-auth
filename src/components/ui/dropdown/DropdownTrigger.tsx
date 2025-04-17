@@ -8,5 +8,5 @@ type DropdownTriggerProps = {
 export function DropdownTrigger(props: DropdownTriggerProps) {
     const [forProp, restProps] = splitProps(props, ['for'])
 
-    return <Button {...restProps} data-dropdown-toggle={forProp.for} />
+    return <Button {...restProps} data-dropdown-toggle={forProp.for} aria-expanded="false" />
 }

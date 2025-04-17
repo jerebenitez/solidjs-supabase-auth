@@ -9,6 +9,7 @@ import { Dropdown } from '../ui/dropdown/Dropdown'
 import { DropdownContent } from '../ui/dropdown/DropdownContent'
 import { DropdownItem } from '../ui/dropdown/DropdownItem'
 import { Separator } from '../ui/Separator'
+import { DropdownTrigger } from '../ui/dropdown/DropdownTrigger'
 
 const getProjects = () => {
     return projects
@@ -327,14 +328,12 @@ export function Header() {
                                 </div>
                             </a>
                         </div>
-                        <Button
-                            type="button"
+                        <DropdownTrigger
                             variant="dark"
                             class="md:mr-0 text-sm p-1 bg-gray-800"
                             pill
                             id="user-menu-button"
-                            aria-expanded="false"
-                            data-dropdown-toggle="dropdown"
+                            for="dropdown"
                         >
                             <span class="sr-only">Open user menu</span>
                             <img
@@ -342,10 +341,10 @@ export function Header() {
                                 src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                 alt="user photo"
                             />
-                        </Button>
+                        </DropdownTrigger>
                         <Dropdown id="dropdown" class="w-56 my-4 list-none text-base bg-white">
                             <div class="py-3 px-4">
-                                <span class="block text-sm font-semibold text-gray-900 dark:text-white">
+                                <span class="block font-semibold">
                                     Neil sims
                                 </span>
                                 <span class="block text-sm text-gray-500 truncate dark:text-gray-400">
