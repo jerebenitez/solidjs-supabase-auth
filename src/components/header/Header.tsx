@@ -4,13 +4,17 @@ import { RadioDropdown } from '~/components/ui/RadioDropdown'
 import { A } from '@solidjs/router'
 import { HeaderSearch } from './HeaderSearch'
 import { projects } from '~/lib/data'
-import { Button } from '../ui/Button'
 import { Dropdown } from '../ui/dropdown/Dropdown'
 import { DropdownContent } from '../ui/dropdown/DropdownContent'
 import { DropdownItem } from '../ui/dropdown/DropdownItem'
 import { Separator } from '../ui/Separator'
 import { DropdownTrigger } from '../ui/dropdown/DropdownTrigger'
 import { DropdownLabel } from '../ui/dropdown/DropdownLabel'
+import { NotificationTime } from '../notification/NotificationTime'
+import { NotificationContent } from '../notification/NotificationContent'
+import { NotificationIcon } from '../notification/NotificationIcon'
+import Video from 'lucide-solid/icons/video'
+import { NotificationImage } from '../notification/NotificationImage'
 
 const getProjects = () => {
     return projects
@@ -273,25 +277,18 @@ export function Header() {
                                     href="#"
                                     class="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-600"
                                 >
-                                    <div class="flex-shrink-0">
-                                        <img
-                                            class="w-11 h-11 rounded-full"
-                                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/robert-brown.png"
-                                            alt="Robert image"
-                                        />
-                                        <div class="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-purple-500 rounded-full border border-white dark:border-gray-700">
-                                            <svg
+                                    <NotificationImage
+                                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/robert-brown.png"
+                                        alt="Robert image"
+                                    >
+                                        <NotificationIcon>
+                                            <Video
                                                 class="w-2 h-2 text-white"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
                                                 fill="currentColor"
-                                                viewBox="0 0 20 14"
-                                            >
-                                                <path d="M11 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm8.585 1.189a.994.994 0 0 0-.9-.138l-2.965.983a1 1 0 0 0-.685.949v8a1 1 0 0 0 .675.946l2.965 1.02a1.013 1.013 0 0 0 1.032-.242A1 1 0 0 0 20 12V2a1 1 0 0 0-.415-.811Z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="pl-3 w-full">
+                                            />
+                                        </NotificationIcon>
+                                    </NotificationImage>
+                                    <NotificationContent>
                                         <div class="text-gray-500 font-normal text-sm mb-1.5 dark:text-gray-400">
                                             <span class="font-semibold text-gray-900 dark:text-white">
                                                 Robert Brown
@@ -300,10 +297,10 @@ export function Header() {
                                             learn how to implement the new
                                             design trend.
                                         </div>
-                                        <div class="text-xs font-medium text-primary-700 dark:text-primary-400">
+                                        <NotificationTime>
                                             3 hours ago
-                                        </div>
-                                    </div>
+                                        </NotificationTime>
+                                    </NotificationContent>
                                 </a>
                             </div>
                             <a
@@ -343,7 +340,10 @@ export function Header() {
                                 alt="user photo"
                             />
                         </DropdownTrigger>
-                        <Dropdown id="dropdown" class="w-56 my-4 list-none text-base bg-white">
+                        <Dropdown
+                            id="dropdown"
+                            class="w-56 my-4 list-none text-base bg-white"
+                        >
                             <DropdownLabel>
                                 <span class="block font-semibold">
                                     Neil sims
@@ -353,7 +353,10 @@ export function Header() {
                                 </span>
                             </DropdownLabel>
                             <Separator class="mb-2" />
-                            <DropdownContent class="my-2" aria-labelledby="dropdown">
+                            <DropdownContent
+                                class="my-2"
+                                aria-labelledby="dropdown"
+                            >
                                 <DropdownItem>
                                     <A href="/profile">My Profile</A>
                                 </DropdownItem>
