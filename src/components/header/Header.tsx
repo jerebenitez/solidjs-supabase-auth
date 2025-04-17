@@ -4,6 +4,9 @@ import { RadioDropdown } from '~/components/ui/RadioDropdown'
 import { A } from '@solidjs/router'
 import { HeaderSearch } from './HeaderSearch'
 import { projects } from '~/lib/data'
+import { Button } from '../ui/Button'
+import { Dropdown } from '../ui/dropdown/Dropdown'
+import { DropdownContent } from '../ui/dropdown/DropdownContent'
 
 const getProjects = () => {
     return projects
@@ -322,9 +325,11 @@ export function Header() {
                                 </div>
                             </a>
                         </div>
-                        <button
+                        <Button
                             type="button"
-                            class="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            variant="dark"
+                            class="md:mr-0 text-sm p-1 bg-gray-800"
+                            pill
                             id="user-menu-button"
                             aria-expanded="false"
                             data-dropdown-toggle="dropdown"
@@ -335,11 +340,8 @@ export function Header() {
                                 src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                 alt="user photo"
                             />
-                        </button>
-                        <div
-                            class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                            id="dropdown"
-                        >
+                        </Button>
+                        <Dropdown id="dropdown" class="w-56 my-4 list-none text-base bg-white">
                             <div class="py-3 px-4">
                                 <span class="block text-sm font-semibold text-gray-900 dark:text-white">
                                     Neil sims
@@ -348,10 +350,7 @@ export function Header() {
                                     name@flowbite.com
                                 </span>
                             </div>
-                            <ul
-                                class="py-1 text-gray-500 dark:text-gray-400"
-                                aria-labelledby="dropdown"
-                            >
+                            <DropdownContent aria-labelledby="dropdown">
                                 <li>
                                     <A
                                         href="/profile"
@@ -368,11 +367,6 @@ export function Header() {
                                         Account settings
                                     </A>
                                 </li>
-                            </ul>
-                            <ul
-                                class="py-1 text-gray-500 dark:text-gray-400"
-                                aria-labelledby="dropdown"
-                            >
                                 <li>
                                     <a
                                         href="#"
@@ -381,8 +375,8 @@ export function Header() {
                                         Sign out
                                     </a>
                                 </li>
-                            </ul>
-                        </div>
+                            </DropdownContent>
+                        </Dropdown>
                     </div>
                 </div>
             </nav>
