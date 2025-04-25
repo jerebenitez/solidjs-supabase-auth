@@ -1,7 +1,7 @@
 import { initFlowbite } from 'flowbite'
 import { onMount } from 'solid-js'
 import { RadioDropdown } from '~/components/ui/RadioDropdown'
-import { A } from '@solidjs/router'
+import { A, useNavigate } from '@solidjs/router'
 import { HeaderSearch } from './HeaderSearch'
 import { projects } from '~/lib/data'
 import { Dropdown } from '../ui/dropdown/Dropdown'
@@ -15,6 +15,8 @@ import { NotificationContent } from '../notification/NotificationContent'
 import { NotificationIcon } from '../notification/NotificationIcon'
 import Video from 'lucide-solid/icons/video'
 import { NotificationImage } from '../notification/NotificationImage'
+import { Button } from '../ui/Button'
+import { signOut } from '~/features/auth/actions'
 
 const getProjects = () => {
     return projects
@@ -365,7 +367,9 @@ export function Header() {
                                 </DropdownItem>
                                 <Separator class="my-2" />
                                 <DropdownItem>
-                                    <A href="/#">Sign Out</A>
+                                    <form action={signOut.with("local")} method='post'>
+                                        <Button variant="link" type="submit">Sing Out</Button>
+                                    </form>
                                 </DropdownItem>
                             </DropdownContent>
                         </Dropdown>
