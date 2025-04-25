@@ -42,7 +42,7 @@ export function SignInForm() {
     const submit = useAction(signIn)
 
     const handleSubmit: SubmitHandler<UserSignIn> = async (values, _) => {
-        const { success, error } = await submit(values) 
+        const { error } = await submit(values) 
 
         if (error) {
             throw new FormError<UserSignIn>(error.message)

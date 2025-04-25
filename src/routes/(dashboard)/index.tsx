@@ -1,11 +1,15 @@
-import { A } from '@solidjs/router'
+import { A, createAsync, redirect, useNavigate } from '@solidjs/router'
 import Counter from '~/components/Counter'
+import { getLoggedUser } from '~/features/auth/actions'
 
 export default function Home() {
+    const navigate = useNavigate()
+    const user = createAsync(() => getLoggedUser())
+    
     return (
         <main class="text-center mx-auto text-gray-700 p-4">
             <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-                Hello world!
+                Hello {user()?.email}!
             </h1>
             <Counter />
             <p class="mt-8">
