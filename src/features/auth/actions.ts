@@ -6,15 +6,15 @@ export const getLoggedUser = query(async () => {
     "use server"
 
     const supabase = createClient()
-    const { data: { session }, error } = await supabase.auth.getSession()
+    const { data: { user }, error } = await supabase.auth.getUser()
 
     if (error !== null) {
         return { error: error.message }
-    } else if (session === null) {
+    } else if (user === null) {
         return { error: "No user found." }
     }
 
-    return { user: session.user, error: null }
+    return { user, error: null }
 
 }, "logged-user")
 
