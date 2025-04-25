@@ -9,12 +9,11 @@ export const getLoggedUser = query(async () => {
     const { data: { user }, error } = await supabase.auth.getUser()
 
     if (error !== null) {
-        return { error: error.message }
-    } else if (user === null) {
-        return { error: "No user found." }
+        console.error(error)
+        return null
     }
 
-    return { user, error: null }
+    return user
 
 }, "logged-user")
 
