@@ -1,12 +1,13 @@
-import { createForm, SubmitHandler, zodForm } from '@modular-forms/solid'
+import { createForm, FormError, SubmitHandler, zodForm } from '@modular-forms/solid'
 import { UserSignIn, UserSignInSchema } from './schemas'
 import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/Button'
 import { Label } from '~/components/ui/Label'
-import { A } from '@solidjs/router'
+import { A, useAction, useNavigate } from '@solidjs/router'
 import { Separator } from '~/components/ui/Separator'
 import { FormInputField } from '~/components/ui/form'
 import { FormCheckboxField } from '~/components/ui/form/FormCheckboxField'
+import { signIn } from './actions'
 
 function GoogleSignInButton() {
     return (
@@ -36,10 +37,18 @@ export function SignInForm() {
     const [userSignInForm, { Form, Field }] = createForm<UserSignIn>({
         validate: zodForm(UserSignInSchema)
     })
+    
+    const navigate = useNavigate()
+    const submit = useAction(signIn)
 
-    const handleSubmit: SubmitHandler<UserSignIn> = (values, event) => {
-        event.preventDefault()
-        console.log(values)
+    const handleSubmit: SubmitHandler<UserSignIn> = async (values, _) => {
+        const { success, error } = await submit(values) 
+
+        if (error) {
+            throw new FormError<UserSignIn>(error.message)
+        }
+
+        navigate("/")
     }
 
     return (
@@ -88,6 +97,7 @@ export function SignInForm() {
                 )}
             </Field>
 
+            <div>{userSignInForm.response.message}</div>
             <Button type="submit" class="w-full">
                 Sing in to your account
             </Button>
