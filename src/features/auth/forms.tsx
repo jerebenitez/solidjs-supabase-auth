@@ -1,4 +1,4 @@
-import { createForm, zodForm } from '@modular-forms/solid'
+import { createForm, SubmitHandler, zodForm } from '@modular-forms/solid'
 import { UserSignIn, UserSignInSchema } from './schemas'
 import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/Button'
@@ -6,6 +6,7 @@ import { Label } from '~/components/ui/Label'
 import { A } from '@solidjs/router'
 import { Separator } from '~/components/ui/Separator'
 import { FormInputField } from '~/components/ui/form'
+import { FormCheckboxField } from '~/components/ui/form/FormCheckboxField'
 
 function GoogleSignInButton() {
     return (
@@ -36,8 +37,13 @@ export function SignInForm() {
         validate: zodForm(UserSignInSchema)
     })
 
+    const handleSubmit: SubmitHandler<UserSignIn> = (values, event) => {
+        event.preventDefault()
+        console.log(values)
+    }
+
     return (
-        <Form class="space-y-6">
+        <Form class="space-y-6" onSubmit={handleSubmit}>
             <Field name="email">
                 {(field, props) => (
                     <FormInputField 
@@ -64,20 +70,14 @@ export function SignInForm() {
                     />
                 )}
             </Field>
-            <Field name="password">
-                {(_, props) => (
+            <Field name="rememberMe" type="boolean">
+                {(field, props) => (
                     <div class="flex items-start">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <Input
-                                    id="remember"
-                                    type="checkbox"
-                                    class="mr-2 w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                                    {...props}
-                                />
-                            </div>
-                            <Label for="remember">Remember me</Label>
-                        </div>
+                        <FormCheckboxField 
+                            {...props}
+                            label="Remember me"
+                            checked={field.value}
+                        />
                         <A
                             href="/forgot-password"
                             class="ms-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
