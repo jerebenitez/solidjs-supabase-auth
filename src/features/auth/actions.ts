@@ -1,4 +1,4 @@
-import { action, query, revalidate } from "@solidjs/router";
+import { action, query, redirect, revalidate } from "@solidjs/router";
 import { SignInWithPasswordCredentials } from "@supabase/supabase-js";
 import { createClient } from "~/lib/supabase/server";
 
@@ -31,7 +31,7 @@ export const signOut = action(async (scope: "local" | "global" | "others" | unde
     }
     
     await revalidate("logged-user")
-    return { success: true }
+    throw redirect("/signin")
 })
 
 export const signIn = action(async (data: SignInWithPasswordCredentials) => {
