@@ -1,8 +1,6 @@
 import { createForm, FormError, SubmitHandler, zodForm } from '@modular-forms/solid'
 import { UserSignIn, UserSignInSchema } from './schemas'
-import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/Button'
-import { Label } from '~/components/ui/Label'
 import { A, useAction, useNavigate } from '@solidjs/router'
 import { Separator } from '~/components/ui/Separator'
 import { FormInputField } from '~/components/ui/form'
@@ -45,7 +43,7 @@ export function SignInForm() {
         const { error } = await submit(values) 
 
         if (error) {
-            throw new FormError<UserSignIn>(error.message)
+            throw new FormError<UserSignIn>(error)
         }
 
         navigate("/")

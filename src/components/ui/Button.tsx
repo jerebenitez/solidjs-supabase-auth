@@ -12,6 +12,7 @@ export type ButtonProps = {
         | 'dark'
         | 'light'
         | 'outline'
+        | 'link'
     size?: 'sm' | 'md' | 'lg' | 'icon'
     pill?: boolean
 } & JSX.ButtonHTMLAttributes<HTMLButtonElement>
@@ -41,6 +42,8 @@ export const Button = (props: ButtonProps) => {
         light: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-400 disabled:bg-gray-300 dark:disabled:bg-gray-400',
         outline:
             'border border-gray-300 text-gray-900 hover:bg-gray-100 focus:ring-gray-300 disabled:border-gray-400 disabled:text-gray-500 disabled:bg-gray-100',
+        link:
+            'p-0 bg-transparent hover:bg-transparent rounded-none ring-none font-light'
     }
 
     const sizes = {
@@ -53,7 +56,7 @@ export const Button = (props: ButtonProps) => {
     const finalClasses = cn(
         baseStyles,
         props.variant ? variants[props.variant] : variants.primary,
-        props.size ? sizes[props.size] : sizes.md,
+        props.size ? sizes[props.size] : (props.variant === "link" ? "" : sizes.md),
         props.pill && 'rounded-full',
         classes.class
     )
