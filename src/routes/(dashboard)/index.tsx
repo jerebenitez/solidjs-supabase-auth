@@ -1,7 +1,6 @@
 import { A, createAsync, useNavigate } from '@solidjs/router'
 import { User } from '@supabase/supabase-js'
 import { createEffect } from 'solid-js'
-import Counter from '~/components/Counter'
 import { getLoggedUser } from '~/features/auth/actions'
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
             <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
                 Hello {user()?.email}!
             </h1>
-            <Counter />
             <p class="mt-8">
                 Visit{' '}
                 <a

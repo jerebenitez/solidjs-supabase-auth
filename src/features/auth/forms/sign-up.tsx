@@ -91,7 +91,7 @@ export function SignUpForm() {
                         validationState={field.error ? "invalid" : "valid"}
                         value={field.value}
                     >
-                        <TextFieldLabel>Your Password</TextFieldLabel>
+                        <TextFieldLabel>Your password</TextFieldLabel>
                         <TextFieldInput
                             {...props}
                             type="password"
@@ -115,7 +115,7 @@ export function SignUpForm() {
                         validationState={field.error ? "invalid" : "valid"}
                         value={field.value}
                     >
-                        <TextFieldLabel>Confirm your Password</TextFieldLabel>
+                        <TextFieldLabel>Confirm your password</TextFieldLabel>
                         <TextFieldInput
                             {...props}
                             type="password"
@@ -139,12 +139,12 @@ export function SignUpForm() {
                 class="w-full"
                 disabled={userSignUpForm.submitting}
             >
-                Sing up to your account
+                Sing up your account
             </Button>
             <LabelSeparator label="or" />
             <GoogleSignInButton />
             <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                Alredy have an account?{' '}
+                Already have an account?{' '}
                 <A
                     href="/signin"
                     class="text-blue-700 hover:underline dark:text-blue-500"

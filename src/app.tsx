@@ -4,14 +4,29 @@ import { Suspense } from 'solid-js'
 import { MetaProvider, Title } from '@solidjs/meta'
 import '@fontsource/inter'
 import './app.css'
+import { cookieStorageManagerSSR } from '@kobalte/core/src/index.jsx'
+import { getCookie } from 'vinxi/http'
+import { isServer } from 'solid-js/web'
+import { ColorModeProvider, ColorModeScript } from '@kobalte/core'
+
+function getServerCookies() {
+  "use server"
+  const colorMode = getCookie("kb-color-mode")
+  return colorMode ? `kb-color-mode=${colorMode}` : ""
+}
 
 export default function App() {
+    const storageManager = cookieStorageManagerSSR(isServer ? getServerCookies() : document.cookie)
+
     return (
         <MetaProvider>
-            <Title>SolidBase starter kit</Title>
-            <Router root={(props) => <Suspense>{props.children}</Suspense>}>
-                <FileRoutes />
-            </Router>
+            <ColorModeScript storageType={storageManager.type} />
+            <ColorModeProvider storageManager={storageManager}>
+                <Title>SolidBase starter kit</Title>
+                <Router root={(props) => <Suspense>{props.children}</Suspense>}>
+                    <FileRoutes />
+                </Router>
+            </ColorModeProvider>
         </MetaProvider>
     )
 }

@@ -90,7 +90,7 @@ export function SignInForm() {
                         validationState={field.error ? "invalid" : "valid"}
                         value={field.value}
                     >
-                        <TextFieldLabel>Your Password</TextFieldLabel>
+                        <TextFieldLabel>Your password</TextFieldLabel>
                         <TextFieldInput
                             {...props}
                             type="password"

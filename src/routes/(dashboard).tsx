@@ -1,17 +1,18 @@
 import { ParentProps } from 'solid-js'
-import { Header } from '~/components/header/Header'
-import { Sidebar } from '~/components/sidebar/Sidebar'
+import { SidebarInset, SidebarProvider } from '~/components/ui/sidebar'
+import { AppHeader } from '~/features/header/components/app-header'
+import { AppSidebar } from '~/features/sidebar/components/app-sidebar'
 
 export default function DashboardLayout(props: ParentProps) {
     return (
-        <>
-            <Header />
-            <Sidebar />
-            <main class="p-4 sm:ml-64">
-                <div class="p-4 mt-14">
+        <SidebarProvider>
+            <AppSidebar variant="inset" />
+            <SidebarInset>
+                <AppHeader />
+                <div class="flex-1">
                     {props.children}
                 </div>
-            </main>
-        </>
+            </SidebarInset>
+        </SidebarProvider>
     )
 }
