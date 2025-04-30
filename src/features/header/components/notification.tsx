@@ -37,7 +37,7 @@ export function Notification(props: NotificationSchema) {
             </Avatar>
             <div class="ml-2 mr-4">
                 <div
-                    class="prose overflow-ellipsis line-clamp-2"
+                    class="overflow-ellipsis line-clamp-2"
                     innerHTML={marked.parse(notificationDescription(props), {
                         async: false,
                     })}
