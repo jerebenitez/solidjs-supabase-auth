@@ -55,3 +55,35 @@ export const signUp = action(async (credentials: SignUpWithPasswordCredentials) 
 
     return { success: true }
 })
+
+export const deleteUser = action(async ({ requestEmail }: { requestEmail: string }) => {
+    "use server"
+
+    const supabase = createClient()
+
+    // get user UID
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user)
+        return { error: "No user found." }
+
+    if (requestEmail !== user.email)
+        return { error: "Error: e-mail addresses don't match." }
+
+    // Invoke deleteUser rpc, needs to be defined in Supabase as follows:
+    /*
+        CREATE or replace function "deleteUser"()
+          returns void
+        LANGUAGE SQL SECURITY DEFINER 
+        AS $$
+           delete from auth.users where id = auth.uid();
+        $$;
+    */
+    const { error } = await supabase.rpc("deleteUser")
+
+    if (error)
+        return { error: error.message }
+
+    await revalidate("logged-user")
+    return { success: true }
+})

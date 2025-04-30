@@ -28,3 +28,6 @@ export const UserSignUpSchema = UserSchema.pick({
     }
 })
 export type UserSignUp = z.infer<typeof UserSignUpSchema>
+
+export const UserDeleteSchema = UserSchema.pick({ email: true })
+export type UserDelete = z.infer<typeof UserDeleteSchema>

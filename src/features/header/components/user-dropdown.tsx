@@ -1,4 +1,4 @@
-import { createAsync } from '@solidjs/router'
+import { A, createAsync } from '@solidjs/router'
 import { User } from '@supabase/auth-js'
 import LogOut from 'lucide-solid/icons/log-out'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
@@ -33,7 +33,7 @@ export function UserDropdown() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>My Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem as={A} href="/settings">Settings</DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <form action={signOut.with('local')} method="post">
                     <DropdownMenuItem as={Button} type="submit" variant="ghost" size="sm" class="w-full font-normal justify-start">

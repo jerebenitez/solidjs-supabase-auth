@@ -2,6 +2,7 @@ import { Flex } from '~/components/ui/flex'
 import { type NotificationSchema } from '../schemas'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { marked } from 'marked'
+import { toast } from 'solid-sonner'
 
 function getInitials(fullName: string) {
     if (fullName.length === 0) return 'NA'
