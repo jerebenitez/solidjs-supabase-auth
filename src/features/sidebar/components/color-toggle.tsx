@@ -1,4 +1,4 @@
-import { useColorMode } from "@kobalte/core"
+import { useColorMode } from "@kobalte/core/color-mode"
 import Laptop from "lucide-solid/icons/laptop"
 import Moon from "lucide-solid/icons/moon"
 import Sun from "lucide-solid/icons/sun"

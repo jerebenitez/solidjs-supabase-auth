@@ -5,7 +5,7 @@ import { getLoggedUser } from '~/features/auth/actions'
 
 export default function Home() {
     const navigate = useNavigate()
-    const user = createAsync<User | null >(() => getLoggedUser())
+    const user = createAsync<User | null >(() => getLoggedUser(), { deferStream: true })
 
     createEffect(() => {
         if (!user())
