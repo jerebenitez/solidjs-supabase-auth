@@ -8,6 +8,7 @@ import { cookieStorageManagerSSR } from '@kobalte/core/src/index.jsx'
 import { getCookie } from 'vinxi/http'
 import { isServer } from 'solid-js/web'
 import { ColorModeProvider, ColorModeScript } from '@kobalte/core'
+import { Toaster } from './components/ui/sonner'
 
 function getServerCookies() {
   "use server"
@@ -23,7 +24,7 @@ export default function App() {
             <ColorModeScript storageType={storageManager.type} />
             <ColorModeProvider storageManager={storageManager}>
                 <Title>SolidBase starter kit</Title>
-                <Router root={(props) => <Suspense>{props.children}</Suspense>}>
+                <Router root={(props) => <Suspense>{props.children}<Toaster /></Suspense>}>
                     <FileRoutes />
                 </Router>
             </ColorModeProvider>

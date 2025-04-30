@@ -6,7 +6,7 @@ import {
 } from '@modular-forms/solid'
 import { UserSignUp, UserSignUpSchema } from '../schemas'
 import { A, useAction, useNavigate } from '@solidjs/router'
-import { signIn } from '../actions'
+import { signUp } from '../actions'
 import { Button } from '~/components/ui/button'
 import {
     TextField,
@@ -15,6 +15,8 @@ import {
     TextFieldLabel,
 } from '~/components/ui/text-field'
 import { LabelSeparator } from '~/components/ui/separator'
+import { Description } from '@kobalte/core/alert-dialog'
+import { toast } from 'solid-sonner'
 
 function GoogleSignInButton() {
     return (
@@ -46,17 +48,23 @@ export function SignUpForm() {
     })
 
     const navigate = useNavigate()
-    const submit = useAction(signIn)
+    const submit = useAction(signUp)
 
     const handleSubmit: SubmitHandler<UserSignUp> = async (values, _) => {
-        console.log(values)
-        // const { error } = await submit(values)
+        const { confirmPassword, ...credentials} = values
+        const { error } = await submit(credentials)
 
-        // if (error) {
-        //     throw new FormError<UserSignUp>(error)
-        // }
+        if (error) {
+            throw new FormError<UserSignUp>(error)
+        }
 
-        // navigate('/')
+        toast("User created successfully", {
+            description: "You will be redirected to the sign in page shortly."
+        })
+
+        setTimeout(() => {
+            navigate('/signin')
+        }, 2000)
     }
 
     return (

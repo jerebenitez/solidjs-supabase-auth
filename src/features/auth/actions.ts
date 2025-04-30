@@ -1,5 +1,5 @@
 import { action, query, redirect, revalidate } from "@solidjs/router";
-import { SignInWithPasswordCredentials } from "@supabase/supabase-js";
+import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js";
 import { createClient } from "~/lib/supabase/server";
 
 export const getLoggedUser = query(async () => {
@@ -42,5 +42,16 @@ export const signIn = action(async (data: SignInWithPasswordCredentials) => {
     if (error) return { error: error.message }
 
     await revalidate("logged-user")
+    return { success: true }
+})
+
+export const signUp = action(async (credentials: SignUpWithPasswordCredentials) => {
+    "use server"
+
+    const supabase = createClient()
+    const { error } = await supabase.auth.signUp({ ...credentials })
+
+    if (error) return { error: error.message }
+
     return { success: true }
 })
