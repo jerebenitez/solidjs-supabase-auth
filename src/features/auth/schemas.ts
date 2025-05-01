@@ -31,3 +31,18 @@ export type UserSignUp = z.infer<typeof UserSignUpSchema>
 
 export const UserDeleteSchema = UserSchema.pick({ email: true })
 export type UserDelete = z.infer<typeof UserDeleteSchema>
+
+export const UpdatePasswordSchema = z.object({
+    oldPassword: z.string().min(6, { message: "Password must contain at least 6 charaters." }),
+    newPassword: z.string().min(6, { message: "Password must contain at least 6 charaters." }),
+    confirmPassword: z.string().min(6, { message: "Password must contain at least 6 charaters." })
+}).superRefine(({ confirmPassword, newPassword }, ctx) => {
+    if (confirmPassword !== newPassword) {
+        ctx.addIssue({
+            code: "custom",
+            message: "New passwords do no match.",
+            path: ['confirmPassword']
+        })
+    }
+})
+export type UpdatePassword = z.infer<typeof UpdatePasswordSchema>

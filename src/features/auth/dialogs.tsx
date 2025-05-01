@@ -48,7 +48,7 @@ export function DeleteAccountDialog() {
     })
     
     return (
-        <AlertDialog defaultOpen>
+        <AlertDialog>
             <AlertDialogTrigger
                 as={Button}
                 variant="outline"
