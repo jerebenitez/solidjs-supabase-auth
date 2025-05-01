@@ -31,6 +31,8 @@ export type UserSignUp = z.infer<typeof UserSignUpSchema>
 
 export const UserDeleteSchema = UserSchema.pick({ email: true })
 export type UserDelete = z.infer<typeof UserDeleteSchema>
+export const PasswordRecoverSchema = UserSchema.pick({ email: true })
+export type PasswordRecover = z.infer<typeof UserDeleteSchema>
 
 export const UpdatePasswordSchema = z.object({
     oldPassword: z.string().min(6, { message: "Password must contain at least 6 charaters." }),

@@ -1,7 +1,7 @@
 import { action, query, redirect, revalidate } from "@solidjs/router";
 import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js";
 import { createClient } from "~/lib/supabase/server";
-import { UpdatePassword } from "./schemas";
+import { PasswordRecover, UpdatePassword } from "./schemas";
 
 export const getLoggedUser = query(async () => {
     "use server"
@@ -140,6 +140,16 @@ export const updatePassword = action(async (formData: UpdatePassword) => {
     if (data === "incorrect") {
         return { error: "Old password was not valid. Try again." }
     }
+
+    await revalidate("logged-user")
+    return { success: true }
+})
+
+export const recoverPassword = action(async (formData: PasswordRecover) => {
+    "use server"
+    
+    const supabase = createClient()
+    await supabase.auth.resetPasswordForEmail(formData.email)
 
     await revalidate("logged-user")
     return { success: true }

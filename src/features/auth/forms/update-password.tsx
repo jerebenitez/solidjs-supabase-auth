@@ -17,7 +17,7 @@ import { updatePassword } from '../actions'
 import { toast } from 'solid-sonner'
 
 export function UpdatePasswordForm() {
-    const [deleteUserForm, { Form, Field }] = createForm<UpdatePassword>({
+    const [updatePasswordForm, { Form, Field }] = createForm<UpdatePassword>({
         validate: zodForm(UpdatePasswordSchema),
     })
 
@@ -106,10 +106,10 @@ export function UpdatePasswordForm() {
             </Field>
 
             <span class="text-destructive text-sm font-bold">
-                {deleteUserForm.response.message}
+                {updatePasswordForm.response.message}
             </span>
             <Button
-                disabled={deleteUserForm.submitting}
+                disabled={updatePasswordForm.submitting}
                 variant="secondary"
                 type="submit"
             >

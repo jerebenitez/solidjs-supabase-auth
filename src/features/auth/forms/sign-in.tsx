@@ -108,6 +108,10 @@ export function SignInForm() {
                 )}
             </Field>
 
+            <p class="w-full flex justify-end items center">
+                <Button as={A} variant="link" href="/recover-password">Forgot your password?</Button>
+            </p>
+
             <span class="text-destructive text-sm font-bold mb-2">{userSignInForm.response.message}</span>
             <Button
                 type="submit"
