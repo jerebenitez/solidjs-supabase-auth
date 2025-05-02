@@ -34,7 +34,7 @@ export function DeleteUserForm(props: { email: string }) {
             throw new FormError<UserDelete>(error)
         }
 
-        toast("Account deleted successfully.")
+        toast('Account deleted successfully.')
         navigate('/signup')
     }
 
@@ -46,7 +46,7 @@ export function DeleteUserForm(props: { email: string }) {
                         class="gap-1"
                         validationState={field.error ? 'invalid' : 'valid'}
                         value={field.value}
-                        onChange={() => setEmail(field.value || "")}
+                        onChange={() => setEmail(field.value || '')}
                     >
                         <TextFieldLabel>
                             To confirm, enter your e-mail below

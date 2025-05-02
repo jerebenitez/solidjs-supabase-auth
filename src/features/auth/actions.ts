@@ -1,13 +1,19 @@
-import { action, query, redirect, revalidate } from "@solidjs/router";
-import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js";
-import { createClient } from "~/lib/supabase/server";
-import { PasswordRecover, UpdatePassword } from "./schemas";
+import { action, query, redirect, revalidate } from '@solidjs/router'
+import {
+    SignInWithPasswordCredentials,
+    SignUpWithPasswordCredentials,
+} from '@supabase/supabase-js'
+import { createClient } from '~/lib/supabase/server'
+import { PasswordRecover, UpdatePassword } from './schemas'
 
 export const getLoggedUser = query(async () => {
-    "use server"
+    'use server'
 
     const supabase = createClient()
-    const { data: { user }, error } = await supabase.auth.getUser()
+    const {
+        data: { user },
+        error,
+    } = await supabase.auth.getUser()
 
     if (error !== null) {
         console.error(error)
@@ -15,105 +21,111 @@ export const getLoggedUser = query(async () => {
     }
 
     return user
-
-}, "logged-user")
+}, 'logged-user')
 
 // https://supabase.com/docs/guides/auth/signout#sign-out-and-scopes
-export const signOut = action(async (scope: "local" | "global" | "others" | undefined) => {
-    "use server"
+export const signOut = action(
+    async (scope: 'local' | 'global' | 'others' | undefined) => {
+        'use server'
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signOut({ scope })
+        const supabase = createClient()
+        const { error } = await supabase.auth.signOut({ scope })
 
-    if (error) {
-        console.error(error)
-        return { error: error.message }
+        if (error) {
+            console.error(error)
+            return { error: error.message }
+        }
+
+        await revalidate('logged-user')
+        throw redirect('/signin')
     }
-    
-    await revalidate("logged-user")
-    throw redirect("/signin")
-})
+)
 
 export const signIn = action(async (data: SignInWithPasswordCredentials) => {
-    "use server"
+    'use server'
 
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword(data)
 
     if (error) return { error: error.message }
 
-    await revalidate("logged-user")
+    await revalidate('logged-user')
     return { success: true }
 })
 
-export const signUp = action(async (credentials: SignUpWithPasswordCredentials) => {
-    "use server"
+export const signUp = action(
+    async (credentials: SignUpWithPasswordCredentials) => {
+        'use server'
 
-    const supabase = createClient()
-    const { error } = await supabase.auth.signUp({ ...credentials })
+        const supabase = createClient()
+        const { error } = await supabase.auth.signUp({ ...credentials })
 
-    if (error) return { error: error.message }
+        if (error) return { error: error.message }
 
-    return { success: true }
-})
+        return { success: true }
+    }
+)
 
-export const deleteUser = action(async ({ requestEmail }: { requestEmail: string }) => {
-    "use server"
+export const deleteUser = action(
+    async ({ requestEmail }: { requestEmail: string }) => {
+        'use server'
 
-    const supabase = createClient()
+        const supabase = createClient()
 
-    // get user UID
-    const { data: { user } } = await supabase.auth.getUser()
+        // get user UID
+        const {
+            data: { user },
+        } = await supabase.auth.getUser()
 
-    if (!user)
-        return { error: "No user found." }
+        if (!user) return { error: 'No user found.' }
 
-    if (requestEmail !== user.email)
-        return { error: "Error: e-mail addresses don't match." }
+        if (requestEmail !== user.email)
+            return { error: "Error: e-mail addresses don't match." }
 
-    const { error } = await supabase.rpc("deleteUser")
+        const { error } = await supabase.rpc('deleteUser')
 
-    if (error)
-        return { error: error.message }
+        if (error) return { error: error.message }
 
-    await revalidate("logged-user")
-    return { success: true }
-})
+        await revalidate('logged-user')
+        return { success: true }
+    }
+)
 
 export const updatePassword = action(async (formData: UpdatePassword) => {
-    "use server"
-    
+    'use server'
+
     const supabase = createClient()
 
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
 
-    if (!user)
-        return { error: "No user found." }
+    if (!user) return { error: 'No user found.' }
 
-    const { data, error } = await supabase.rpc("update_password", {
+    const { data, error } = await supabase.rpc('update_password', {
         current_id: user.id,
         current_plain_password: formData.oldPassword,
-        new_plain_password: formData.newPassword
-    });
+        new_plain_password: formData.newPassword,
+    })
 
     if (error) {
         return { error: error.message }
     }
 
-    if (data === "incorrect") {
-        return { error: "Old password was not valid. Try again." }
+    if (data === 'incorrect') {
+        return { error: 'Old password was not valid. Try again.' }
     }
 
-    await revalidate("logged-user")
+    await revalidate('logged-user')
     return { success: true }
 })
 
 export const recoverPassword = action(async (formData: PasswordRecover) => {
-    "use server"
-    
+    'use server'
+
     const supabase = createClient()
     await supabase.auth.resetPasswordForEmail(formData.email)
 
-    await revalidate("logged-user")
+    await revalidate('logged-user')
     return { success: true }
 })

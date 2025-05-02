@@ -1,8 +1,4 @@
-import {
-    createForm,
-    SubmitHandler,
-    zodForm,
-} from '@modular-forms/solid'
+import { createForm, SubmitHandler, zodForm } from '@modular-forms/solid'
 import { PasswordRecover, PasswordRecoverSchema } from '../schemas'
 import { useAction } from '@solidjs/router'
 import { Button } from '~/components/ui/button'
@@ -26,7 +22,7 @@ export function RecoverPasswordForm() {
         await submit(values)
         // We don't report errors so that it can't be used to check for users
 
-        toast("Check your e-mail.")
+        toast('Check your e-mail.')
     }
 
     return (

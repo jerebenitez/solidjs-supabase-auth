@@ -51,15 +51,15 @@ export function SignUpForm() {
     const submit = useAction(signUp)
 
     const handleSubmit: SubmitHandler<UserSignUp> = async (values, _) => {
-        const { confirmPassword, ...credentials} = values
+        const { confirmPassword, ...credentials } = values
         const { error } = await submit(credentials)
 
         if (error) {
             throw new FormError<UserSignUp>(error)
         }
 
-        toast("User created successfully", {
-            description: "You will be redirected to the sign in page shortly."
+        toast('User created successfully', {
+            description: 'You will be redirected to the sign in page shortly.',
         })
 
         setTimeout(() => {
@@ -71,9 +71,9 @@ export function SignUpForm() {
         <Form class="space-y-6" onSubmit={handleSubmit}>
             <Field name="email">
                 {(field, props) => (
-                    <TextField 
+                    <TextField
                         class="gap-1"
-                        validationState={field.error ? "invalid" : "valid"}
+                        validationState={field.error ? 'invalid' : 'valid'}
                         value={field.value}
                     >
                         <TextFieldLabel>Your email</TextFieldLabel>
@@ -94,9 +94,9 @@ export function SignUpForm() {
             </Field>
             <Field name="password">
                 {(field, props) => (
-                    <TextField 
+                    <TextField
                         class="gap-1"
-                        validationState={field.error ? "invalid" : "valid"}
+                        validationState={field.error ? 'invalid' : 'valid'}
                         value={field.value}
                     >
                         <TextFieldLabel>Your password</TextFieldLabel>
@@ -118,9 +118,9 @@ export function SignUpForm() {
             </Field>
             <Field name="confirmPassword">
                 {(field, props) => (
-                    <TextField 
+                    <TextField
                         class="gap-1"
-                        validationState={field.error ? "invalid" : "valid"}
+                        validationState={field.error ? 'invalid' : 'valid'}
                         value={field.value}
                     >
                         <TextFieldLabel>Confirm your password</TextFieldLabel>
@@ -141,7 +141,9 @@ export function SignUpForm() {
                 )}
             </Field>
 
-            <span class="text-destructive text-sm font-bold mb-2">{userSignUpForm.response.message}</span>
+            <span class="text-destructive text-sm font-bold mb-2">
+                {userSignUpForm.response.message}
+            </span>
             <Button
                 type="submit"
                 class="w-full"
@@ -163,4 +165,3 @@ export function SignUpForm() {
         </Form>
     )
 }
-

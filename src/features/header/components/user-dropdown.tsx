@@ -33,10 +33,18 @@ export function UserDropdown() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>My Profile</DropdownMenuItem>
-                <DropdownMenuItem as={A} href="/settings">Settings</DropdownMenuItem>
+                <DropdownMenuItem as={A} href="/settings">
+                    Settings
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <form action={signOut.with('local')} method="post">
-                    <DropdownMenuItem as={Button} type="submit" variant="ghost" size="sm" class="w-full font-normal justify-start">
+                    <DropdownMenuItem
+                        as={Button}
+                        type="submit"
+                        variant="ghost"
+                        size="sm"
+                        class="w-full font-normal justify-start"
+                    >
                         <LogOut class="w-4" />
                         Sign out
                     </DropdownMenuItem>

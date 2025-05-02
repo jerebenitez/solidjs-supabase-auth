@@ -62,9 +62,9 @@ export function SignInForm() {
         <Form class="space-y-6" onSubmit={handleSubmit}>
             <Field name="email">
                 {(field, props) => (
-                    <TextField 
+                    <TextField
                         class="gap-1"
-                        validationState={field.error ? "invalid" : "valid"}
+                        validationState={field.error ? 'invalid' : 'valid'}
                         value={field.value}
                     >
                         <TextFieldLabel>Your email</TextFieldLabel>
@@ -85,9 +85,9 @@ export function SignInForm() {
             </Field>
             <Field name="password">
                 {(field, props) => (
-                    <TextField 
+                    <TextField
                         class="gap-1"
-                        validationState={field.error ? "invalid" : "valid"}
+                        validationState={field.error ? 'invalid' : 'valid'}
                         value={field.value}
                     >
                         <TextFieldLabel>Your password</TextFieldLabel>
@@ -109,10 +109,14 @@ export function SignInForm() {
             </Field>
 
             <p class="w-full flex justify-end items center">
-                <Button as={A} variant="link" href="/recover-password">Forgot your password?</Button>
+                <Button as={A} variant="link" href="/recover-password">
+                    Forgot your password?
+                </Button>
             </p>
 
-            <span class="text-destructive text-sm font-bold mb-2">{userSignInForm.response.message}</span>
+            <span class="text-destructive text-sm font-bold mb-2">
+                {userSignInForm.response.message}
+            </span>
             <Button
                 type="submit"
                 class="w-full"

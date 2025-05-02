@@ -13,7 +13,9 @@ import { DeleteUserForm } from './forms/delete-account'
 import { createAsync } from '@solidjs/router'
 import { getLoggedUser } from './actions'
 
-function Warning(props: { onClick: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent> }) {
+function Warning(props: {
+    onClick: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>
+}) {
     return (
         <AlertDialogDescription class="flex flex-col gap-4">
             <section class="bg-yellow-950 p-10 rounded border border-yellow-900 flex items-center gap-6">
@@ -30,15 +32,18 @@ function Warning(props: { onClick: JSX.EventHandlerUnion<HTMLButtonElement, Mous
 function ConfirmDelete(props: { email: string | undefined | null }) {
     return (
         <AlertDialogDescription class="flex flex-col gap-4">
-            <Show when={props.email} fallback={"No email detected. Are you logged in?"}>
-                <DeleteUserForm email={props.email || ""} />
+            <Show
+                when={props.email}
+                fallback={'No email detected. Are you logged in?'}
+            >
+                <DeleteUserForm email={props.email || ''} />
             </Show>
         </AlertDialogDescription>
     )
 }
 
 export function DeleteAccountDialog() {
-    const [ showWarning, setShowWarning ] = createSignal<boolean>(true)
+    const [showWarning, setShowWarning] = createSignal<boolean>(true)
     const [userEmail, setUserEmail] = createSignal<string | null>()
 
     const user = createAsync(() => getLoggedUser(), { deferStream: true })
@@ -46,7 +51,7 @@ export function DeleteAccountDialog() {
     createEffect(() => {
         setUserEmail(user()?.email)
     })
-    
+
     return (
         <AlertDialog>
             <AlertDialogTrigger
@@ -58,10 +63,11 @@ export function DeleteAccountDialog() {
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogTitle>Delete Account</AlertDialogTitle>
-                {showWarning()
-                    ? <Warning onClick={() => setShowWarning(false)} />
-                    : <ConfirmDelete email={userEmail()} />
-                }
+                {showWarning() ? (
+                    <Warning onClick={() => setShowWarning(false)} />
+                ) : (
+                    <ConfirmDelete email={userEmail()} />
+                )}
             </AlertDialogContent>
         </AlertDialog>
     )

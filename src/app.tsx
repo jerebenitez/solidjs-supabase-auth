@@ -11,20 +11,29 @@ import { ColorModeProvider, ColorModeScript } from '@kobalte/core'
 import { Toaster } from './components/ui/sonner'
 
 function getServerCookies() {
-  "use server"
-  const colorMode = getCookie("kb-color-mode")
-  return colorMode ? `kb-color-mode=${colorMode}` : ""
+    'use server'
+    const colorMode = getCookie('kb-color-mode')
+    return colorMode ? `kb-color-mode=${colorMode}` : ''
 }
 
 export default function App() {
-    const storageManager = cookieStorageManagerSSR(isServer ? getServerCookies() : document.cookie)
+    const storageManager = cookieStorageManagerSSR(
+        isServer ? getServerCookies() : document.cookie
+    )
 
     return (
         <MetaProvider>
             <ColorModeScript storageType={storageManager.type} />
             <ColorModeProvider storageManager={storageManager}>
                 <Title>SolidBase starter kit</Title>
-                <Router root={(props) => <Suspense>{props.children}<Toaster /></Suspense>}>
+                <Router
+                    root={(props) => (
+                        <Suspense>
+                            {props.children}
+                            <Toaster />
+                        </Suspense>
+                    )}
+                >
                     <FileRoutes />
                 </Router>
             </ColorModeProvider>

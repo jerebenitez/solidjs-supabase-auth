@@ -30,7 +30,7 @@ export function UpdatePasswordForm() {
             throw new FormError<UpdatePassword>(error)
         }
 
-        toast("Password updated successfully")
+        toast('Password updated successfully')
     }
 
     return (

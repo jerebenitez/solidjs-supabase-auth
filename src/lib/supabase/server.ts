@@ -51,8 +51,7 @@ export function createMiddlewareClient(event: RequestEvent) {
                     'Set-Cookie',
                     serializeCookieHeader(name, value, options)
                 )
-            }
-            )
+            })
         },
     }
 

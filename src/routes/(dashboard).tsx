@@ -9,9 +9,7 @@ export default function DashboardLayout(props: ParentProps) {
             <AppSidebar variant="inset" />
             <SidebarInset>
                 <AppHeader />
-                <div class="flex-1">
-                    {props.children}
-                </div>
+                <div class="flex-1">{props.children}</div>
             </SidebarInset>
         </SidebarProvider>
     )

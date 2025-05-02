@@ -18,7 +18,10 @@ export function Notifications(props: { notifications: NotificationSchema[] }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger as={Button} variant="ghost" size="icon">
-                <Bell class="w-4" fill={props.notifications.length > 0 ? 'white' : ''} />
+                <Bell
+                    class="w-4"
+                    fill={props.notifications.length > 0 ? 'white' : ''}
+                />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <Show
@@ -29,7 +32,9 @@ export function Notifications(props: { notifications: NotificationSchema[] }) {
                         </DropdownMenuLabel>
                     }
                 >
-                    <DropdownMenuLabel class="text-center">Notifications</DropdownMenuLabel>
+                    <DropdownMenuLabel class="text-center">
+                        Notifications
+                    </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <For each={props.notifications}>
                         {(item) => (
@@ -38,7 +43,11 @@ export function Notifications(props: { notifications: NotificationSchema[] }) {
                     </For>
                 </Show>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem as={A} href="/notifications" class="w-full cursor-pointer font-bold inline-flex justify-center">
+                <DropdownMenuItem
+                    as={A}
+                    href="/notifications"
+                    class="w-full cursor-pointer font-bold inline-flex justify-center"
+                >
                     <Eye class="w-4" />
                     View all
                 </DropdownMenuItem>
