@@ -126,15 +126,6 @@ export function SignInForm() {
             </Button>
             <LabelSeparator label="or" />
             <GoogleSignInButton />
-            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                Not registered?{' '}
-                <A
-                    href="/signup"
-                    class="text-blue-700 hover:underline dark:text-blue-500"
-                >
-                    Create account
-                </A>
-            </div>
         </Form>
     )
 }

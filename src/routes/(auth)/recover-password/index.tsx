@@ -1,4 +1,4 @@
-import { createAsync, useNavigate } from '@solidjs/router'
+import { A, createAsync, useNavigate } from '@solidjs/router'
 import { User } from '@supabase/supabase-js'
 import { createEffect } from 'solid-js'
 import {
@@ -29,8 +29,17 @@ export default function ForgotPassword() {
                     address. You will then be asked to set a new password.
                 </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent class="space-y-6">
                 <RecoverPasswordForm />
+                <div class="text-right text-sm font-medium text-gray-500 dark:text-gray-300">
+                    Already have an account?{' '}
+                    <A
+                        href="/signin"
+                        class="text-blue-700 hover:underline dark:text-blue-500"
+                    >
+                        Sign in
+                    </A>
+                </div>
             </CardContent>
         </Card>
     )

@@ -1,4 +1,4 @@
-import { createAsync, useNavigate } from '@solidjs/router'
+import { A, createAsync, useNavigate } from '@solidjs/router'
 import { User } from '@supabase/supabase-js'
 import { createEffect } from 'solid-js'
 import {
@@ -27,8 +27,17 @@ export default function SignIn() {
                     Enter your credentials below to access the system.
                 </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent class="space-y-6">
                 <SignInForm />
+                <div class="text-right text-sm font-medium text-gray-500 dark:text-gray-300">
+                    Not registered?{' '}
+                    <A
+                        href="/signup"
+                        class="text-blue-700 hover:underline dark:text-blue-500"
+                    >
+                        Create account
+                    </A>
+                </div>
             </CardContent>
         </Card>
     )
