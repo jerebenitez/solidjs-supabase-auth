@@ -1,10 +1,11 @@
 import { action, query, redirect, revalidate } from '@solidjs/router'
 import {
+    EmailOtpType,
     SignInWithPasswordCredentials,
     SignUpWithPasswordCredentials,
 } from '@supabase/supabase-js'
 import { createClient } from '~/lib/supabase/server'
-import { PasswordRecover, UpdatePassword } from './schemas'
+import { PasswordRecover, ResetPassword, ResetPasswordSchema, UpdatePassword } from './schemas'
 
 export const getLoggedUser = query(async () => {
     'use server'
@@ -126,6 +127,35 @@ export const recoverPassword = action(async (formData: PasswordRecover) => {
     const supabase = createClient()
     await supabase.auth.resetPasswordForEmail(formData.email)
 
+    await revalidate('logged-user')
+    return { success: true }
+})
+
+export const resetPassword = action(async (token_hash: string, type: string, password: ResetPassword) => {
+    'use server'
+
+    const { error: parseError } = ResetPasswordSchema.safeParse(password)
+
+    if (parseError || !token_hash || !type) {
+        return { error: "Invalid credentials." }
+    }
+
+    const supabase = createClient()
+
+    let { error } = await supabase.auth.verifyOtp({
+        type: type as EmailOtpType,
+        token_hash
+    })
+
+    if (error) return { error: error.message }
+
+    // WTF JS
+    ;({ error } = await supabase.auth.updateUser({
+        password: password.newPassword
+    }))
+
+    if (error) return { error: error.message }
+    
     await revalidate('logged-user')
     return { success: true }
 })

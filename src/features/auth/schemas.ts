@@ -62,3 +62,23 @@ export const UpdatePasswordSchema = z
         }
     })
 export type UpdatePassword = z.infer<typeof UpdatePasswordSchema>
+
+export const ResetPasswordSchema = z
+    .object({
+        newPassword: z
+            .string()
+            .min(6, { message: 'Password must contain at least 6 charaters.' }),
+        confirmPassword: z
+            .string()
+            .min(6, { message: 'Password must contain at least 6 charaters.' }),
+    })
+    .superRefine(({ confirmPassword, newPassword }, ctx) => {
+        if (confirmPassword !== newPassword) {
+            ctx.addIssue({
+                code: 'custom',
+                message: 'New passwords do no match.',
+                path: ['confirmPassword'],
+            })
+        }
+    })
+export type ResetPassword = z.infer<typeof ResetPasswordSchema>
