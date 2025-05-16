@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
-import { ChangePasswordSection, DeleteAccountSection, SubscriptionSection } from '~/features/settings/sections'
+import { ActiveSessionsSection, ChangePasswordSection, DeleteAccountSection, SubscriptionSection } from '~/features/settings/sections'
 
 export default function SettingsPage() {
     return (
@@ -18,7 +18,9 @@ export default function SettingsPage() {
                 <TabsContent value="billing">
                     <SubscriptionSection />
                 </TabsContent>
-                <TabsContent value="sessions">s</TabsContent>
+                <TabsContent value="sessions">
+                    <ActiveSessionsSection />
+                </TabsContent>
             </Tabs>
         </main>
     )
