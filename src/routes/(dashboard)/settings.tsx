@@ -1,27 +1,25 @@
-import { Separator } from '~/components/ui/separator'
-import { DeleteAccountDialog } from '~/features/auth/dialogs'
-import { UpdatePasswordForm } from '~/features/auth/forms/update-password'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs'
+import { ChangePasswordSection, DeleteAccountSection, SubscriptionSection } from '~/features/settings/sections'
 
 export default function SettingsPage() {
     return (
-        <main class="container mt-4 flex flex-col gap-8">
-            <section>
-                <h1 class="w-full text-3xl font-bold mb-2">Change Password</h1>
-                <Separator class="mt-2 mb-8" />
-                <div class="px-8">
-                    <UpdatePasswordForm />
-                </div>
-            </section>
-            <section>
-                <h1 class="w-full text-3xl text-destructive-foreground font-bold">
-                    Delete Account
-                </h1>
-                <Separator class="mt-2" />
-                <div class="px-8">
-                    <p class="py-8">This action is permanent!</p>
-                    <DeleteAccountDialog />
-                </div>
-            </section>
+        <main class="container mt-4 flex flex-col gap-4">
+            <h1 class="text-3xl font-bold">Settings</h1>
+            <Tabs defaultValue="account">
+                <TabsList class="mb-4">
+                    <TabsTrigger value="account">Account</TabsTrigger>
+                    <TabsTrigger value="billing">Billing</TabsTrigger>
+                    <TabsTrigger value="sessions">Sessions</TabsTrigger>
+                </TabsList>
+                <TabsContent value="account" class="w-full flex flex-col gap-6 justify-center">
+                    <ChangePasswordSection />
+                    <DeleteAccountSection />
+                </TabsContent>
+                <TabsContent value="billing">
+                    <SubscriptionSection />
+                </TabsContent>
+                <TabsContent value="sessions">s</TabsContent>
+            </Tabs>
         </main>
     )
 }
