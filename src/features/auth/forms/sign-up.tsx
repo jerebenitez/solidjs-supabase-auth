@@ -5,7 +5,7 @@ import {
     zodForm,
 } from '@modular-forms/solid'
 import { UserSignUp, UserSignUpSchema } from '../schemas'
-import { A, useAction, useNavigate } from '@solidjs/router'
+import { useAction, useNavigate } from '@solidjs/router'
 import { signUp } from '../actions'
 import { Button } from '~/components/ui/button'
 import {
@@ -15,7 +15,6 @@ import {
     TextFieldLabel,
 } from '~/components/ui/text-field'
 import { LabelSeparator } from '~/components/ui/separator'
-import { Description } from '@kobalte/core/alert-dialog'
 import { toast } from 'solid-sonner'
 
 function GoogleSignInButton() {

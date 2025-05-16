@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import { Card, CardContent } from "~/components/ui/card";
@@ -75,14 +75,16 @@ export function ActiveSessionsSection() {
                                             </div>
                                         </div>
                                         <div>
-                                            <Button 
-                                                variant="destructive" 
-                                                size="sm"
-                                                disabled={session.current}
-                                                onClick={() => handleCloseSession(session.id)}
-                                            >
-                                                {session.current ? "Current Session" : "Sign Out"}
-                                            </Button>
+                                            <Show when={!session.current}>
+                                                <Button 
+                                                    variant="destructive" 
+                                                    size="sm"
+                                                    disabled={session.current}
+                                                    onClick={() => handleCloseSession(session.id)}
+                                                >
+                                                    Sign Out
+                                                </Button>
+                                            </Show>
                                         </div>
                                     </div>
                                 </CardContent>

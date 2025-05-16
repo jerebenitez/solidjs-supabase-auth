@@ -32,7 +32,7 @@ export function UserDropdown() {
                     </span>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>My Profile</DropdownMenuItem>
+                <DropdownMenuItem as={A} href="/profile">My Profile</DropdownMenuItem>
                 <DropdownMenuItem as={A} href="/settings">
                     Settings
                 </DropdownMenuItem>
