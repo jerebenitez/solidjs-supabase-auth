@@ -16,3 +16,28 @@ export const formatDate = (dateString: string) => {
     }).format(date);
 };
 
+/**
+ * Avoid excessive calls to func.
+ * 
+ * @param func Function you want to execute
+ * @param wait Wait time in ms
+ * @returns Debounced function
+ */
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+
+  return function (...args: Parameters<T>) {
+    const later = () => {
+      timeout = null;
+      func(...args);
+    };
+
+    if (timeout !== null) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(later, wait);
+  };
+}
