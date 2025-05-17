@@ -16,7 +16,7 @@ export const ProfileSchema = z.object({
   avatar_url: z.string().regex(urlImageRegex, 'Invalid image URL.').optional().nullable(),
   birth_date: z.coerce.date().optional().nullable(),
   
-  metadata: z.record(z.unknown()).optional().nullable(),
+  // metadata: z.record(z.unknown()).optional().nullable(),
   
   created_at: z.date().optional(),
   updated_at: z.date().optional(),
