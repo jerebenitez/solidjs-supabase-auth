@@ -15,11 +15,11 @@ import {
     TextFieldErrorMessage,
     TextFieldInput,
     TextFieldLabel,
+    TextFieldTextArea,
 } from '~/components/ui/text-field'
 import { toast } from 'solid-sonner'
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 import { debounce } from '~/lib/utils'
-import { TextFieldTextArea } from '@kobalte/core/src/text-field/text-field-text-area.jsx'
 
 export function ProfileForm() {
     // Get current profile

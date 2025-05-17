@@ -1,7 +1,6 @@
 import { createClient } from '~/lib/supabase/server';
-import { ProfileCreate, ProfileSchema, ProfileUpdate } from '~/lib/schemas/profile';
+import { ProfileSchema, ProfileUpdate } from './schemas';
 import { action, revalidate } from '@solidjs/router';
-import { error, redirect } from '@solidjs/router';
 
 export const getCurrentProfile = async () => {
   'use server';
