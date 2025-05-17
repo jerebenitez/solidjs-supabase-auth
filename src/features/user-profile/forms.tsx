@@ -247,7 +247,7 @@ export function ProfileForm() {
                                     <TextField
                                         class="gap-1"
                                         validationState={field.error ? 'invalid' : 'valid'}
-                                        value={field.value}
+                                        value={field.value || ''}
                                     >
                                         <TextFieldLabel>Bio</TextFieldLabel>
                                         <TextFieldTextArea
@@ -271,7 +271,7 @@ export function ProfileForm() {
                                     <TextField
                                         class="gap-1"
                                         validationState={field.error ? 'invalid' : 'valid'}
-                                        value={field.value}
+                                        value={field.value || ''}
                                     >
                                         <TextFieldLabel>Website</TextFieldLabel>
                                         <TextFieldInput
