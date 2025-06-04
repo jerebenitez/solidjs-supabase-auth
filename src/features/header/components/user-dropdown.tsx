@@ -12,21 +12,24 @@ import {
     DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'
 import { getLoggedUser, signOut } from '~/features/auth/actions'
+import { getCurrentProfile } from '~/features/user-profile/actions'
+import { getInitials } from '~/lib/utils'
 
 export function UserDropdown() {
     const user = createAsync<User | null>(() => getLoggedUser())
+    const profile = createAsync(() => getCurrentProfile())
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
                 <Avatar>
-                    <AvatarImage src="" />
-                    <AvatarFallback>JB</AvatarFallback>
+                    <AvatarImage src={profile()?.profile?.avatar_url} />
+                    <AvatarFallback>{getInitials(profile()?.profile?.full_name || user()?.email)}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent class="w-64">
                 <DropdownMenuLabel>
-                    <p>Hello!</p>
+                    <p>Hello{profile() && `, ${profile()?.profile?.full_name}`}!</p>
                     <span class="text-muted-foreground text-xs">
                         {user()?.email}
                     </span>

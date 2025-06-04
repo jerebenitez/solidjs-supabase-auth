@@ -41,3 +41,14 @@ export function debounce<T extends (...args: any[]) => any>(
     timeout = setTimeout(later, wait);
   };
 }
+
+export function getInitials(name: string): string {
+    if (!name) return "NA"
+
+    const arr = name.split(' ')
+    if (arr.length > 1) {
+        return arr.slice(0, 2).map(str => str[0]).join('').toUpperCase()
+    } else {
+        return name.slice(0, 2).toUpperCase()
+    }
+}
